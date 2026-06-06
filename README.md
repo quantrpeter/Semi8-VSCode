@@ -4,6 +4,8 @@
 
 Syntax highlighting for the **Semi8** (also known as Open8) 8-bit microcontroller assembly language.
 
+![](/img/Screenshot20260606.png)
+
 ## Features
 
 - Syntax highlighting for Semi8/Open8 assembly (`.s`, `.S`, `.s8`, `.semi8`, etc.)
@@ -35,12 +37,83 @@ See the [Semi8 instruction reference](https://github.com/semiblock/semi8/blob/ma
 
 Also supports common assembler directives (case-insensitive, with or without dot prefix): `EQU SET DB DW DL DS ORG SECTION MACRO ENDM INCLUDE IF ELSE ENDIF DEFINE`.
 
-## Installation (Development)
+## Development & Debugging
 
-- Clone this repo
-- Open the `Semi8-VSCode` folder in VS Code
-- Press `F5` to launch an Extension Development Host
-- Open a `.s` file in the new window to test highlighting
+### Running the extension from source
+
+1. Open the `Semi8-VSCode` folder directly in VS Code (recommended over a multi-root workspace for extension development).
+2. Press `F5`, or go to the **Run and Debug** view and select **"Run Extension"**.
+   - This starts an **Extension Development Host** — a separate VS Code window that loads the extension directly from your source files.
+3. In the Extension Development Host:
+   - Open a test file, for example the official example:
+     `/Users/peter/workspace/Semi8/program.s`
+   - Or any file with one of the registered extensions (`.s`, `.S`, `.s8`, `.semi8`, `.asm8`, `.o8`).
+   - If the language is not automatically detected, open the Command Palette and run **Change Language Mode → Semi8 ASM**.
+
+A `.vscode/launch.json` is included so F5 works out of the box.
+
+### Debugging syntax highlighting (the main way to debug this extension)
+
+Because this is a **pure declarative language extension** (no `main.ts`, no activation code), you don't debug JavaScript — you debug the **TextMate grammar**.
+
+Use this command (the single most useful tool):
+
+1. In the Extension Development Host, open a Semi8 `.s` file.
+2. Open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+3. Run **Developer: Inspect Editor Tokens and Scopes**.
+4. Click or move the cursor over any token.
+
+You will see:
+- The scopes that were applied (e.g. `keyword.control.instruction.semi8-asm`, `variable.language.register.semi8-asm`, `entity.name.function.label.semi8-asm`, `comment.line.semi8-asm`).
+- Which rule in `syntaxes/semi8.tmLanguage.json` produced the match.
+
+This is how you verify and iterate on the grammar.
+
+### Applying changes while developing
+
+After you edit any of these files:
+- `syntaxes/semi8.tmLanguage.json`
+- `language-configuration.json`
+- `package.json`
+
+Do the following in the **Extension Development Host** window:
+- Run **Developer: Reload Window** from the Command Palette, or
+- Press the reload button in the title bar of the dev host.
+
+Then re-open your test file or re-run the token inspector.
+
+### Testing language configuration features
+
+- **Comment toggling**: Select one or more lines and press `Ctrl+/` (`Cmd+/` on Mac). It should insert `;` comments.
+- **Brackets and auto-closing**: Defined in `language-configuration.json`.
+- **Word selection**: The `wordPattern` affects double-clicking on labels and registers.
+
+### Testing a packaged `.vsix` (instead of source)
+
+```bash
+npx @vscode/vsce package --no-git-tag-version
+```
+
+Then, in a **regular** VS Code window (not the Extension Development Host):
+- Go to the Extensions view.
+- Click the `...` menu → **Install from VSIX...**
+- Choose the generated `semi8-vscode-*.vsix` file.
+
+Close that window when you want to go back to source-based development with F5.
+
+### Important note about `.s` files
+
+The extension `.s` is extremely common (AVR, ARM, x86 gas, etc.). VS Code may default to another language. You can force it with:
+
+```json
+// settings.json
+"files.associations": {
+  "*.s": "semi8-asm",
+  "*.S": "semi8-asm"
+}
+```
+
+Or use **Change Language Mode** per file.
 
 ## Packaging
 
