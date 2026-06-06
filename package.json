@@ -3,6 +3,7 @@
   "displayName": "Semi8 VSCode Extension",
   "description": "Syntax highlighting support for the Semi8 (Open8) 8-bit microcontroller assembly language.",
   "version": "0.1.0",
+  "icon": "assets/image/extensionIcon.png",
   "publisher": "hongkongprogrammingsociety",
   "license": "MIT",
   "homepage": "https://github.com/semiblock/semi8",
