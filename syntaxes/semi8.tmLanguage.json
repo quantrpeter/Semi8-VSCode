@@ -1,0 +1,97 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Semi8 Assembly",
+  "scopeName": "source.semi8-asm",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#labels"
+    },
+    {
+      "include": "#instructions"
+    },
+    {
+      "include": "#directives"
+    },
+    {
+      "include": "#registers"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#identifiers"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": ";.*$",
+          "name": "comment.line.semicolon.semi8-asm"
+        },
+        {
+          "match": "//.*$",
+          "name": "comment.line.double-slash.semi8-asm"
+        }
+      ]
+    },
+    "labels": {
+      "match": "^\\s*([A-Za-z_][\\w]*)\\s*:\\s*",
+      "captures": {
+        "1": {
+          "name": "entity.name.function.label.semi8-asm"
+        }
+      }
+    },
+    "instructions": {
+      "match": "(?i)\\b(ADC|ADD|AND|ANDI|ASR|BLD|BREAK|BRCC|BRCS|BREQ|BRGE|BRLT|BRNE|BST|CBR|CBI|CALL|CLR|COM|CPC|CP|DEC|EOR|INC|IN|JMP|LD|LDD|LDI|LDS|LPM|LSL|LSR|MOV|MOVW|MUL|NEG|NOP|OR|ORI|OUT|POP|PUSH|RET|RETI|RJMP|ROL|ROR|SBC|SBI|SBR|SEI|CLI|SLEEP|SPM|ST|STD|STS|SUB|SUBI|SWAP|TST|WDR)\\b",
+      "name": "keyword.control.instruction.semi8-asm"
+    },
+    "directives": {
+      "match": "(?i)\\b\\.(EQU|SET|DB|DW|DL|DS|ORG|SECTION|MACRO|ENDM|INCLUDE|IF|ELSE|ENDIF|DEFINE)\\b|\\b(EQU|SET|DB|DW|DL|DS|ORG|SECTION|MACRO|ENDM|INCLUDE|IF|ELSE|ENDIF|DEFINE)\\b",
+      "name": "keyword.other.directive.semi8-asm"
+    },
+    "registers": {
+      "patterns": [
+        {
+          "match": "(?i)\\b[Rr]([0-9]|[12][0-9]|3[01])\\b",
+          "name": "variable.other.register.semi8-asm"
+        },
+        {
+          "match": "(?i)\\b([XYZ]|X\\+|Y\\+|Z\\+|-X|-Y|-Z)\\b",
+          "name": "variable.other.register.index.semi8-asm"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "\\b0[xX][0-9a-fA-F]+\\b",
+          "name": "constant.numeric.hex.semi8-asm"
+        },
+        {
+          "match": "\\b0[bB][01]+\\b",
+          "name": "constant.numeric.binary.semi8-asm"
+        },
+        {
+          "match": "\\b\\d+\\b",
+          "name": "constant.numeric.decimal.semi8-asm"
+        }
+      ]
+    },
+    "operators": {
+      "match": ",",
+      "name": "punctuation.separator.semi8-asm"
+    },
+    "identifiers": {
+      "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b",
+      "name": "variable.other.readwrite.semi8-asm"
+    }
+  }
+}

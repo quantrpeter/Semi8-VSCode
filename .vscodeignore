@@ -1,0 +1,16 @@
+.vscode/**
+.vscode-test/**
+.gitignore
+.git/
+node_modules/
+out/
+*.vsix
+*.log
+*.ts
+tsconfig.json
+*.map
+*.tsbuildinfo
+.vscode-test.js
+test/
+coverage/
+.nyc_output/

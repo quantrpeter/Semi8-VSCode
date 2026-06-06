@@ -1,0 +1,13 @@
+# VS Code
+.vscode/
+*.vsix
+
+# Node
+node_modules/
+out/
+*.log
+
+# Misc
+.DS_Store
+*.swp
+*~

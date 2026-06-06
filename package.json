@@ -1,0 +1,64 @@
+{
+  "name": "semi8-asm",
+  "displayName": "Semi8 Assembly",
+  "description": "Syntax highlighting support for the Semi8 (Open8) 8-bit microcontroller assembly language.",
+  "version": "0.1.0",
+  "publisher": "semiblock",
+  "license": "MIT",
+  "homepage": "https://github.com/semiblock/semi8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/semiblock/semi8-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/semiblock/semi8/issues"
+  },
+  "pricing": "Free",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "semi8",
+    "open8",
+    "assembly",
+    "asm",
+    "microcontroller",
+    "semiblock"
+  ],
+  "galleryBanner": {
+    "color": "#0d2137",
+    "theme": "dark"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "semi8-asm",
+        "aliases": [
+          "Semi8 ASM",
+          "semi8",
+          "open8-asm",
+          "Semi8 Assembly"
+        ],
+        "extensions": [
+          ".s",
+          ".S",
+          ".s8",
+          ".semi8",
+          ".asm8",
+          ".o8"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "semi8-asm",
+        "scopeName": "source.semi8-asm",
+        "path": "./syntaxes/semi8.tmLanguage.json"
+      }
+    ]
+  }
+}
