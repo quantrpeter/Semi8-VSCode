@@ -85,7 +85,7 @@ This produces a `.vsix` file you can install manually via **Extensions: Install 
 ### Publish steps
 
 ```bash
-# 1. Login with your publisher (stores the token securely)
+# 1. Login with your publisher (stores the token securely), skip this step if you already ran it
 vsce login hongkongprogrammingsociety
 
 # 2. (Optional but recommended) Test by packaging first
@@ -106,7 +106,7 @@ vsce publish
   - Upload to the Marketplace.
 
 After publishing, the extension will appear at:
-`https://marketplace.visualstudio.com/items?itemName=semiblock.semi8-asm`
+`https://marketplace.visualstudio.com/items?itemName=hongkongprogrammingsociety.semi8-asm`
 
 Users can then install it directly from the Extensions view in VS Code.
 

@@ -2,6 +2,7 @@
 .vscode-test/**
 .gitignore
 .git/
+.github/
 node_modules/
 out/
 *.vsix
@@ -14,3 +15,13 @@ tsconfig.json
 test/
 coverage/
 .nyc_output/
+
+# Large repo assets not needed in the published extension
+banner.png
+*.md
+!README.md
+!readme.md
+
+# Development / build artifacts
+.DS_Store
+Thumbs.db
